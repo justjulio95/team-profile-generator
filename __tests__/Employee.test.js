@@ -10,13 +10,12 @@
 const Employee = require('../lib/Employee')
 
 test('creates an EMPLOYEE object', () => {
-    const employee = new Employee('Shawn', '22611', 'shawn@sao.com', 'employee')
+    const employee = new Employee('Shawn', '22611', 'shawn@sao.com')
 
     expect(employee.name).toBe('Shawn');
     expect(employee.id).toMatch(/[0-9]+/);
     expect(employee.email).toEqual(expect.stringContaining("@"));
     expect(employee.email).toEqual(expect.stringContaining(".com"));
-    expect(employee.role).toBe('employee')
 })
 
 test('returns the NAME value of EMPLOYEE', () => {
@@ -38,7 +37,7 @@ test('returns the EMAIL value of EMPLOYEE', () => {
 })
 
 test('returns the ROLE value of EMPLOYEE', () => {
-    const employee = new Employee('Shawn', '22611', 'shawn@sao.com', 'employee')
+    const employee = new Employee('Shawn', '22611', 'shawn@sao.com')
 
-    expect(employee.getRole()).toEqual(expect.stringContaining(employee.role))
+    expect(employee.getRole()).toBe('Employee')
 })

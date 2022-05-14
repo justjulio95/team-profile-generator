@@ -5,13 +5,12 @@
 const Engineer = require('../lib/Engineer')
 
 test('create the ENGINEER object', () => {
-    const engineer = new Engineer('Troy', '12345', 'troy@sao.com', 'engineer', 'yort93')
+    const engineer = new Engineer('Troy', '12345', 'troy@sao.com', 'yort93')
     // ensure inheritance works as expected
     expect(engineer.name).toBe('Troy');
     expect(engineer.id).toMatch(/[0-9]+/);
     expect(engineer.email).toEqual(expect.stringContaining("@"));
     expect(engineer.email).toEqual(expect.stringContaining(".com"));
-    expect(engineer.role).toBe('engineer')
     // new test specific for engineer
     expect(engineer.github).toBe('yort93')
 })
@@ -26,5 +25,5 @@ test('returns GITHUB value of ENGINEER', () => {
 test('returns ROLE value of ENGINEER', () => {
     const engineer = new Engineer('Troy', '12345', 'troy@sao.com', 'engineer', 'yort93')
 
-    expect(engineer.getRole()).toEqual(expect.stringContaining(engineer.role))
+    expect(engineer.getRole()).toBe('Engineer')
 })
