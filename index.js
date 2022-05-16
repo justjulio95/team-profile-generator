@@ -1,8 +1,12 @@
+//import all the important classes/functions that this file will interact with
 const inquirer = require('inquirer');
 const Manager = require('./lib/Manager')
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern')
+const generatePage = require('./src/page-template')
+const {writeFile, copyFile} = require('./utils/generate-site')
 
+// create an empty array to push team members into
 let teamMembers = [];
 
 const promptManager = () => {
@@ -57,10 +61,11 @@ const promptManager = () => {
         }
     ])
     .then(answers => {
+        //create a new manager object using the information provided
         const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber)
-        console.table(manager)
+
+        //push manager info up into teamMembers array
         teamMembers.push(manager)
-        promptMenu();
     })
 }
 
@@ -85,9 +90,11 @@ const promptMenu = () => {
                 addIntern();
                 break;
             case 'No':
+                //take the teamMembers array and feed it into the generate page function, to then write the file into the dist/folder
+                writeFile(generatePage(teamMembers))
+                //copy the style.css folder from src into dist/
+                copyFile()
                 console.log('Your team is all set up!')
-                console.table(teamMembers)
-                break;
         }
     })
 }
@@ -144,9 +151,11 @@ const addEngineer = () => {
         }
     ])
     .then(answers =>{
+        //Create a new engineer object using the information provided
         const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github)
-        console.table(engineer)
+        //push the engineer into the teamMembers array
         teamMembers.push(engineer)
+        //trigger the menu again
         promptMenu();
     })
 }
@@ -203,11 +212,14 @@ const addIntern = () => {
         }
     ])
     .then(answers => {
+        //create a new intern object using the information provided
         const intern = new Intern(answers.name, answers.id, answers.email, answers.school)
-        console.table(intern)
+        //push the intern into the teamMembers array
         teamMembers.push(intern)
+        //trigger the menu again
         promptMenu();
     })
 }
 
-promptManager();
+promptManager()
+.then(promptMenu)
