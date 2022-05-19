@@ -36,3 +36,9 @@ To run tests, run the following command:
 If there are any questions concerning this project, please open an issue or contact me directly at just.julio95.
 
 If you would like to see more of my work, please visit my [Github](https://github.com/justjulio95).
+
+## Video
+![Video Preview](https://drive.google.com/file/d/10dEo4UyIJfF5VQENbrBMdJa3j4GebcoJ/view)
+
+## Preview
+![Photo of sample html](./assets/images/generator-preview.png)
